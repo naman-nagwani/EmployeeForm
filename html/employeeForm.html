@@ -6,7 +6,7 @@
     <title>Employee Form</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../css/employeeForm.css'>
-    <script src='main.js'></script>
+    <script src='../js/employeeForm.js'></script>
 </head>
 <body>
     <div class="parent-container">
@@ -23,7 +23,7 @@
                         <input class="input-name" type="text"/>
                     </div>
 
-                    <div class="form-item">
+                    <div class="form-item" id="profile-image-selector">
                         <div class="form-label">
                             Profile image
                         </div>
@@ -48,7 +48,7 @@
 
                     </div>
 
-                    <div class="form-item">
+                    <div class="form-item" id="gender-selector">
                         <div class="form-label">
                             Gender
                         </div>
@@ -60,7 +60,7 @@
                         </div>
                     </div>
 
-                    <div class="form-item">
+                    <div class="form-item" id="department-selector">
                         <div class="form-label">
                             Department
                         </div>
@@ -93,10 +93,11 @@
                         <div class="form-label">
                             Salary
                         </div>
-                        <input type="range">
+                        <input type="range" min="100000" max="1000000" id="salary">
+                        <salary>500000</salary>
                     </div>
 
-                    <div class="form-item">
+                    <div class="form-item" id="date-selector">
                         <div class="form-label">
                             Start Date
                         </div>
