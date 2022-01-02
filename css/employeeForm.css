@@ -91,3 +91,9 @@ body {
     justify-content: space-between;
 }
 
+.button-container button {
+    border: 1px solid rgb(163, 163, 163);
+    border-radius: 3px;
+    height: 2em;
+    width: 10vw;
+}
