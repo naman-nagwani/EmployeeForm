@@ -41,14 +41,14 @@ body {
     align-items: center;
 }
 
-.input-item {
+.input-name {
     width: 30vw;
     height: 1.7em;
     border: 1px solid rgb(163, 163, 163);
     border-radius: 3px;
 }
 
-.profile-choices {
+.multiple-choices {
     width: 30vw;
     justify-content: space-between;
     display: flex;
@@ -63,4 +63,8 @@ body {
 .profile-choice-item {
     display: flex;
     align-items: center;
+}
+
+.gender-choices label {
+    margin-right: 3vw;
 }
