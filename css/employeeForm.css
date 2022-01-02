@@ -17,11 +17,32 @@ body {
 }
 
 .content-container {
-    padding: 5vh 5vw;
+    padding: 5vh 10vw;
 }
 
 .header {
     font-family: sans-serif;
     font-size: 2em;
     color: rgb(59, 59, 59);
+}
+
+.form {
+    margin-top: 5vh;
+}
+
+.form-item {
+    display: flex;
+}
+
+.form-label {
+    width: 10vw;
+    display: flex;
+    align-items: center;
+}
+
+.input-item {
+    width: 30vw;
+    height: 1.7em;
+    border: 1px solid rgb(163, 163, 163);
+    border-radius: 3px;
 }
