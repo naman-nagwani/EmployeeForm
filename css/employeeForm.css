@@ -75,3 +75,19 @@ body {
 .gender-choices label {
     margin-right: 3vw;
 }
+
+.label-notes {
+    display: flex;
+    align-items: flex-start;
+}
+
+.notes {
+    width: 30vw;
+    height: 9vh;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
