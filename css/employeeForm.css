@@ -1,0 +1,27 @@
+body {
+    margin: 0%;
+}
+
+.parent-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-container {
+    width: 60vw;
+    height: 90vh;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgb(165, 165, 165);
+}
+
+.content-container {
+    padding: 5vh 5vw;
+}
+
+.header {
+    font-family: sans-serif;
+    font-size: 2em;
+    color: rgb(59, 59, 59);
+}
