@@ -6,6 +6,7 @@
     <title>Employee Form</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../css/employeeForm.css'>
+    <script src="../js/Employee.js"></script>
     <script src='../js/employeeForm.js'></script>
 </head>
 <body>
@@ -15,12 +16,12 @@
                 <div class="header">
                     Employee Payroll Form
                 </div>
-                <form class="form">
+                <form class="form" target="_blank" id="form" onsubmit="saveForm(); return false;">
                     <div class="form-item">
                         <div class="form-label">
                             Name
                         </div>
-                        <input class="input-name" type="text"/>
+                        <input class="input-name" type="text" id="name"/>
                     </div>
 
                     <div class="form-item" id="profile-image-selector">
@@ -29,19 +30,19 @@
                         </div>
                         <div class="multiple-choices">
                             <div class="profile-choice-item">
-                                <input type="radio" name="profile-choice"/>
+                                <input type="radio" name="profile-choice" value="person1"/>
                                 <img src="../assets/profile-images/Ellipse -1.png">
                             </div>
                             <div class="profile-choice-item">
-                                <input type="radio" name="profile-choice"/>
+                                <input type="radio" name="profile-choice" value="person2"/>
                                 <img src="../assets/profile-images/Ellipse -2.png">
                             </div>
                             <div class="profile-choice-item">
-                                <input type="radio" name="profile-choice"/>
+                                <input type="radio" name="profile-choice" value="person3"/>
                                 <img src="../assets/profile-images/Ellipse -3.png">
                             </div>
                             <div class="profile-choice-item">
-                                <input type="radio" name="profile-choice"/>
+                                <input type="radio" name="profile-choice" value="person4"/>
                                 <img src="../assets/profile-images/Ellipse -4.png">
                             </div>
                         </div>
@@ -53,9 +54,9 @@
                             Gender
                         </div>
                         <div class="gender-choices">
-                            <input type="radio" name="gender">
+                            <input type="radio" name="gender" value="male">
                             <label>Male</label>
-                            <input type="radio" name="gender">
+                            <input type="radio" name="gender" value="female">
                             <label>Female</label>
                         </div>
                     </div>
@@ -66,23 +67,23 @@
                         </div>
                         <div class="multiple-choices">
                             <div>
-                                <input type="checkbox" name="department">
+                                <input type="checkbox" name="department" value="HR">
                                 <label>HR</label>
                             </div>
                             <div>
-                                <input type="checkbox" name="department">
+                                <input type="checkbox" name="department" value="Sales">
                                 <label>Sales</label>
                             </div>
                             <div>
-                                <input type="checkbox" name="department">
+                                <input type="checkbox" name="department" value="Finance">
                                 <label>Finance</label>
                             </div>
                             <div>
-                                <input type="checkbox" name="department">
+                                <input type="checkbox" name="department" value="Engineer">
                                 <label>Engineer</label>
                             </div>
                             <div>
-                                <input type="checkbox" name="department">
+                                <input type="checkbox" name="department" value="Other">
                                 <label>Other</label>
                             </div>
                         </div>
@@ -167,15 +168,16 @@
                         <div class="form-label label-notes">
                             Notes
                         </div>
-                        <input class="notes" type="text">
+                        <input class="notes" type="text" id="notes">
                     </div>
+
                 </form>
 
                 <div class="button-container">
                     <button>Cancel</button>
                     <div class="form-button-right">
-                        <button>Submit</button>
-                        <button>Reset</button>
+                        <button type="submit" form="form">Submit</button>
+                        <button>Reset</button> 
                     </div>
                 </div>
             </div>
