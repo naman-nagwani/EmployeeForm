@@ -31,7 +31,7 @@ function saveForm() {
         let day = document.querySelector('select[name=Day]').value;
         let month = document.querySelector('select[name=Month]').value;
         let year = document.querySelector('select[name=Year]').value;
-        
+
         employee.startDate = day + "-" + month + "-" + year;
 
         let department = [];
@@ -46,7 +46,7 @@ function saveForm() {
         console.log(invalidName);
     }
 
-    console.log(" saved");
+    console.log(" saved " + employee.startDate);
     
 }
 
