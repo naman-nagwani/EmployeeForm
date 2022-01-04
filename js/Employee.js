@@ -1,5 +1,9 @@
 class Employee {
 
+    constructor() {
+        
+    }
+
     get id() {
         return this.id;
     }
