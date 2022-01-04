@@ -53,16 +53,21 @@ function saveForm() {
             department.push(element.value)
         }
     });
-    employee.department = department;        
+    employee.department = department;     
+    employee.id = new Date().getTime();   
 
-    
-
-    console.log(" saved " + JSON.stringify(employee));
+    let localStorage = window.localStorage;
+    localStorage.setItem(employee.id, JSON.stringify(employee) );
+    console.log(" saved " + localStorage.getItem(employee.id));
     
 }
 
 function submitForm() {
     console.log("submiting");
     window.location = "/html/home.html";
+}
+function clearForm() {
+    console.log("submiting");
+    window.localStorage.clear();
 }
 

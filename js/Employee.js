@@ -5,11 +5,11 @@ class Employee {
     }
 
     get id() {
-        return this.id;
+        return this.idValue;
     }
 
     set id(id) {
-        this.id = id;
+        this.idValue = id;
     }
 
     get name() {
