@@ -29,7 +29,7 @@ body {
 error-label {
     color: red;
     font-style: italic;
-    width: 17vw;
+    max-width: 17vw;
 }
 
 .form {
