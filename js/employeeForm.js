@@ -1,20 +1,31 @@
+let employee = new Employee;
+
 window.addEventListener("load", () => {
     let salary = document.querySelector("salary");
     let salaryValue = document.querySelector("#salary");
-
+    
+    let name = document.querySelector("#name");
     
     salaryValue.addEventListener("input", () => {
         salary.textContent = salaryValue.value;
+    })
+    
+    name.addEventListener("input", () => {
+        let errorName = document.querySelector('#error-name');
+        try {
+            employee.name = name.value;
+            errorName.textContent = "";
+        } catch (invalidName) {
+            errorName.textContent = invalidName;
+        }
     })
 })
 
 function saveForm() {
 
-    let employee = new Employee;
+    
 
     try {
-        employee.name = document.querySelector("#name").value;
-
         let profile = document.querySelector('input[name="profile-choice"]:checked');
         if (profile != null) {
             employee.profilePic = profile.value;
@@ -42,11 +53,12 @@ function saveForm() {
         });
         employee.department = department;        
 
-    } catch (invalidName) {
-        console.log(invalidName);
+    } catch (e) {
+        
+        console.log(e);
     }
 
-    console.log(" saved " + employee.startDate);
+    console.log(" saved " + JSON.stringify(employee));
     
 }
 
