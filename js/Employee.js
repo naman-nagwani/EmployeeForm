@@ -13,17 +13,17 @@ class Employee {
     }
 
     get name() {
-        return this.nameValue;
+        return this._name;
     }
 
     set name(name) {
         let namePattern = RegExp("^[A-Z][a-z A-Z]{2,}$");
-
+        console.log("setting name");
         if(!namePattern.test(name)) {
             throw "Invalid Name";
         }
         else {
-            this.nameValue = name;
+            this._name = name;
         }
     }
 
@@ -73,16 +73,16 @@ class Employee {
 
     }
 
-    get profilePic() { return this.profilePicValue; }
-    set profilePic(profilePic) { this.profilePicValue = profilePic }
+    get profilePic() { return this._profilePic; }
+    set profilePic(profilePic) { this._profilePic = profilePic }
 
-    get gender() { return this.genderValue}
-    set gender(gender) { this.genderValue = gender }
+    get gender() { return this._gender}
+    set gender(gender) { this._gender = gender }
 
-    get salary() { return this.salaryValue}
-    set salary(salary) {this.salaryValue = salary}
+    get salary() { return this._salary}
+    set salary(salary) {this._salary = salary}
 
-    get startDate() { return this.startDateValue}
+    get startDate() { return this._startDate}
     set startDate(startDate) {
 
         let date = startDate.split("-");
@@ -91,17 +91,17 @@ class Employee {
         
         var diff = (today.getTime() - userDate.getTime() );
         if( diff < (30 * 24 * 60 * 60 * 1000) && diff > 0 ) {
-            this.startDateValue = startDate;
+            this._startDate = startDate;
         }
         else {
             throw "Invalid date";
         }
     }
 
-    get department() { return this.departmentValue}
-    set department(department) {this.departmentValue = department}
+    get department() { return this._department}
+    set department(department) {this._department = department}
 
-    get notes() { return this.notesValue;}
-    set notes(notes) {this.notesValue = notes;}
+    get notes() { return this._notes;}
+    set notes(notes) {this._notes = notes;}
 
 }

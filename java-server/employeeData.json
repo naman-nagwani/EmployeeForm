@@ -1,0 +1,58 @@
+{
+  "employeeData": [
+    {
+      "_name": "David B Alapat",
+      "_gender": "M",
+      "_department": [
+        "Admin",
+        "IT",
+        "HR"
+      ],
+      "_salary": 120000,
+      "_startDate": "03-01-2022",
+      "_profilePic": "Ellipse-1",
+      "id": 1
+    },
+    {
+      "_name": "John Doe",
+      "_gender": "M",
+      "_department": [
+        "IT",
+        "HR"
+      ],
+      "_salary": 100000,
+      "_startDate": "02-01-2022",
+      "_profilePic": "Ellipse-2",
+      "id": 2
+    },
+    {
+      "_name": "David",
+      "_profilePic": "Ellipse-1",
+      "_salary": "759369",
+      "_notes": "",
+      "idValue": 1641422090068,
+      "_startDate": "21-12-2021",
+      "id": 3
+    },
+    {
+      "_name": "Jane Doe",
+      "_profilePic": "Ellipse-4",
+      "_gender": "female",
+      "_salary": "861416",
+      "_notes": "hi there",
+      "idValue": 1641422177860,
+      "_startDate": "21-12-2021",
+      "id": 4
+    },
+    {
+      "_name": "Other guy",
+      "_profilePic": "Ellipse-2",
+      "_gender": "male",
+      "_salary": "550000",
+      "_notes": "",
+      "idValue": 1641422273035,
+      "_startDate": "20-12-2021",
+      "id": 5
+    }
+  ]
+}
