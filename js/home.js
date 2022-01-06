@@ -1,36 +1,9 @@
 window.addEventListener("DOMContentLoaded", (event) => {
 
-    let xml = new XMLHttpRequest();
-    let result = null;
-
-    xml.onreadystatechange = () => {
-        console.log(xml.readyState + ": " + xml.status);
-        if (xml.readyState == 4) {
-            if (xml.status.toString().match("^[2][0-9]{2}$")) {
-                result = JSON.parse(xml.response);
-                createHomeHTML(result);
-            }
-
-            else if (xml.status.toString().match("^[45][0-9]{2}$")) {
-                console.log(" ERROR in the 3-400 range");
-            }
- 
-            else {
-                console.log(" ERROR in some unknown thing");
-            }
-
-        }
-    }
-
-    xml.open("GET", "http://localhost:3000/employeeData");
-    xml.send();
-
-
-    // console.log(xml);
-
-    // createHomeHTML();
-    // console.log(getEmpDataFromStorage());
+    connectWithJsonServer("GET", "http://localhost:3000/employeeData", createHomeHTML);
+    
 })
+
 
 const getEmpDataFromStorage = () => {
     let storage = window.localStorage;
@@ -39,6 +12,7 @@ const getEmpDataFromStorage = () => {
 
 const createHomeHTML = (empList) => {
     
+    console.log("in the callback function");
     let empPayrollDataList = empList;
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
@@ -58,21 +32,21 @@ const createHomeHTML = (empList) => {
 
     
     let innerHtml = `${headerInnerHtml}`;
+    let id = 0;
     for (const empPayrollData of empPayrollDataList) {
-        console.log(empPayrollData.department);
-
+        id += 1;
         let departmentHtml = ``;
 
-        if(empPayrollData.department) { 
-            for (const dep of empPayrollData.department) {
+        if(empPayrollData._department) { 
+            for (const dep of empPayrollData._department) {
                 departmentHtml += `
                     <span class="department-chip">${dep}</span>`
             }
         }
 
         let finalDate = ``;
-        if (empPayrollData.startDate) {
-            let date = empPayrollData.startDate.split("-");
+        if (empPayrollData._startDate) {
+            let date = empPayrollData._startDate.split("-");
             finalDate = date[0] + " " + months[date[1] - 1] + " " + date[2];
         }
 
@@ -92,12 +66,13 @@ const createHomeHTML = (empList) => {
             <td>${empPayrollData._salary}</td>
             <td>${finalDate}</td>
             <td>
-                <i class="material-icons">delete</i>
+                <i class="material-icons" onclick="deleteEmployee(${empPayrollData.id})">delete</i>
                 <i class="material-icons">edit</i>
             </td>
         </tr>`;
     
     }
+
 
     
     document.querySelector("#employee-table").innerHTML = innerHtml;
@@ -106,4 +81,10 @@ const createHomeHTML = (empList) => {
 const addUser = () => {
     console.log("hi there");
     window.location = "./employeeForm.html";
+}
+
+function deleteEmployee(id) {    
+    console.log(" trying to delete employee " + id);
+    let empRecord = "http://localhost:3000/employeeData/" + id;
+    connectWithJsonServer("delete", empRecord, (response) => {console.log("deleted " + response);})
 }

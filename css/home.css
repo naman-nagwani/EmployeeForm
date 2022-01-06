@@ -80,3 +80,7 @@ tr {
     background-color: rgb(148, 213, 233);
     border-radius: 15px;
 }
+
+i {
+    cursor: pointer;
+}

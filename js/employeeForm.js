@@ -41,7 +41,7 @@ function saveForm() {
             department.push(element.value)
         }
     });
-    // employee.department = JSON.parse(department);     
+    employee.department = department;     
     employee.id = new Date().getTime();   
     
     let day = document.querySelector('select[name=Day]').value;
@@ -59,6 +59,7 @@ function saveForm() {
         let localStorage = window.localStorage;
         localStorage.setItem(employee.id, JSON.stringify(employee) );
         console.log(" saved " + localStorage.getItem(employee.id));
+        
         submitForm(employee);
     } catch (invalidDate) {
         errorDate.textContent = invalidDate;
@@ -69,18 +70,14 @@ function saveForm() {
 
 function submitForm(employee) {
 
-    let xml = new XMLHttpRequest();
-
-    xml.open("POST", "http://localhost:3000/employeeData");
-    xml.setRequestHeader("Content-Type", "Application/json");
-    xml.send( JSON.stringify(employee));
+    connectWithJsonServer("POST", "http://localhost:3000/employeeData", null, true, employee);
 
     console.log("submiting");
     window.location = "/html/home.html";
 }
+
 function clearForm() {
     console.log("clearing local memory too");
     window.localStorage.clear();
     window.location = "/html/home.html";
 }
-
