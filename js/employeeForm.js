@@ -3,6 +3,8 @@ let employee = new Employee();
 
 window.addEventListener("load", () => {
 
+    // console.log("raw data: " + getLocalEmployeeData(false, "empData"));
+
     let salary = document.querySelector("salary");
     let salaryValue = document.querySelector("#salary");
     let name = document.querySelector("#name");
@@ -23,12 +25,13 @@ window.addEventListener("load", () => {
         }
     })
 
-    let checkUpdate = JSON.parse( window.localStorage.getItem("update") );
+    let checkUpdate = getLocalEmployeeData(true, "update")
     console.log("update: " + checkUpdate.update[0]);
 
     // Fill up the fields if the update value is true in the local storage
     if (checkUpdate.update[0] == true) {
 
+        console.log(" We are updating");
         let empList = getLocalEmployeeData().employees;
         let updateIndex = empList.findIndex((element) => element._id == checkUpdate.update[1])
         let updateEmployee = empList[updateIndex];
@@ -59,20 +62,23 @@ window.addEventListener("load", () => {
 
         document.querySelector('#notes').value = updateEmployee._notes;
 
-        // delete this record so we can enter the replacement record
-        deleteEmployee(checkUpdate[0], empList, getLocalEmployeeData());
-
-        // Reset the update flag in the local storage
-        window.localStorage.setItem("update", JSON.stringify({"update": [false]}));
     }
-
     
+    // console.log("raw data: " + getLocalEmployeeData(false));
 })
 
 // Called when the submit button is clicked
 function saveForm() {
-
+    
+    if (getLocalEmployeeData(true, "update").update[1] == true) {
+        // delete this record so we can enter the replacement record
+        deleteEmployee(getLocalEmployeeData(true, "update").update[1], empList, getLocalEmployeeData());
+        
+        // Reset the update flag in the local storage
+        setLocalEmployeeData("update", {"update": [false] } );
+    }
     // Set a unique value for id
+
     employee.id = new Date().getTime();
     
     // Set the profile picture value
@@ -133,19 +139,21 @@ function saveForm() {
 // We add the employee object to the local storage
 function submitForm(employee) {
     
-    let localStorage = window.localStorage;
-    let empDataTemp = localStorage.getItem("empData") == null ? {"employees": []} : JSON.parse( localStorage.getItem("empData") );
+    // let localStorage = window.localStorage;
+    
+    let empDataTemp = getLocalEmployeeData(false) == null ? {"employees": []} : getLocalEmployeeData();
 
     console.log("emp");
-    console.log(empDataTemp);
+    console.log("data: " + JSON.stringify(empDataTemp));
 
     empDataTemp.employees.push(employee );
 
     console.log("new emp");
     console.log(empDataTemp);
 
-    localStorage.setItem("empData", JSON.stringify(empDataTemp) );
-    console.log(" saved " + localStorage.getItem("empData"));
+    setLocalEmployeeData("empData", empDataTemp)
+    // localStorage.setItem("empData", JSON.stringify(empDataTemp) );
+    console.log(" saved " + getLocalEmployeeData());
 
     // Redirect back to the home page once we're done saving into local storage
     window.location = "/html/home.html";
@@ -153,5 +161,9 @@ function submitForm(employee) {
 
 // This function is called when the cancel button is clicked. We redirect back to the home page.
 function clearForm() {
+
+    // Reset the update flag in the local storage
+    setLocalEmployeeData("update", {"update": [false] } );
+    
     window.location = "/html/home.html";
 }

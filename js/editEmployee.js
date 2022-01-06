@@ -1,13 +1,3 @@
-const editEmployeeForm = (element, empData) => {
-
-    console.log(" editing");
-    window.addEventListener("load", () => {
-        console.log("loaded ");
-        document.getElementById("name").value = "david";
-    })
-
-}
-
 const deleteEmployee = (id, array, empData) => {    
     console.log("trying to delete something");
     console.log(" trying to delete employee " + id);

@@ -20,17 +20,17 @@ const createHomeHtml = () => {
     let innerHtml = `${headerInnerHtml}`;
 
     // Initialize local storage if it doesn't exist already
-    let localStorage = window.localStorage;
+    // let localStorage = window.localStorage;
     let empData;
 
-    if (localStorage.getItem("empData") == null) {
+    if (getLocalEmployeeData(false) == null) {
         console.log(" its empty");
         document.querySelector("#employee-table").innerHTML = innerHtml;
         return;
     }
     else {
         console.log(" its not empty ");
-        empData = localStorage.getItem("empData")
+        empData = getLocalEmployeeData(false)
     }
 
     let empList = JSON.parse(empData).employees;
@@ -46,7 +46,7 @@ const createHomeHtml = () => {
             image = "../assets/profile-images/" + emp._profilePic + ".png";
         }
 
-        let deleteFunction = "deleteEmployee(" + emp._id + ", " + JSON.stringify(empList) + ", " + empData + ")";
+        let deleteFunction = "deleteEmployee(" + emp._id + ", " + JSON.stringify(empList) + ", " + empData + "); createHomeHtml();";
         let editFunction = "editEmployee(" + JSON.stringify(emp) + ", " + empData + ")";
 
         // console.log("edit function: " + editFunction);
@@ -74,13 +74,15 @@ const createHomeHtml = () => {
 
 const addUser = () => {
     // Reset the update flag in the local storage
-    window.localStorage.setItem("update", JSON.stringify({"update": [false]}));
+    setLocalEmployeeData("update", {"update": [false]})
+    // window.localStorage.setItem("update", JSON.stringify({"update": [false]}));
 
     window.location = "./employeeForm.html";
 }
 
 const editEmployee = (element, empData) => {
 
-    window.localStorage.setItem("update", JSON.stringify({"update": [true, element._id]}));
+    setLocalEmployeeData("update", {"update": [true, element._id]})
+    // window.localStorage.setItem("update", JSON.stringify({"update": [true, element._id]}));
     window.location = "./employeeForm.html";
 }
