@@ -84,10 +84,18 @@ function saveForm() {
 function submitForm(employee) {
     
     let localStorage = window.localStorage;
-    console.log(" local stuff: " + localStorage);
+    let empDataTemp = localStorage.getItem("empData") == null ? {"employees": []} : JSON.parse( localStorage.getItem("empData") );
 
-    localStorage.setItem(employee.id, JSON.stringify(employee) );
-    console.log(" saved " + localStorage.getItem(employee.id));
+    console.log("emp");
+    console.log(empDataTemp);
+
+    empDataTemp.employees.push(employee );
+
+    console.log("new emp");
+    console.log(empDataTemp);
+
+    localStorage.setItem("empData", JSON.stringify(empDataTemp) );
+    console.log(" saved " + localStorage.getItem("empData"));
 
     // Redirect back to the home page once we're done saving into local storage
     window.location = "/html/home.html";

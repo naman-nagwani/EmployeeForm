@@ -19,11 +19,34 @@ const createHomeHtml = () => {
     
     let innerHtml = `${headerInnerHtml}`;
 
-    for (const emp of dummyJson.employeeData) {
-        
+    // Initialize local storage if it doesn't exist already
+    let localStorage = window.localStorage;
+    let empData;
+
+    if (localStorage.getItem("empData") == null) {
+        console.log(" its empty");
+        return;
+    }
+    else {
+        console.log(" its not empty ");
+        empData = localStorage.getItem("empData")
+    }
+
+    console.log(JSON.parse(empData) );
+    for (const emp of JSON.parse(empData).employees) {
+        console.log("emp: " + emp);
+
+        console.log(emp._name);
+        console.log(emp._department);
+
+        let image = ``;
+        if (emp._profilePic) {
+            image = "../assets/profile-images/" + emp._profilePic + ".png";
+        }
+
         innerHtml +=  `
         <tr>
-            <td></td>
+            <td><img src=${image}></td>
             <td>${emp._name}</td>
             <td>${emp._gender}</td>
             <td>
@@ -45,33 +68,4 @@ const createHomeHtml = () => {
 
 const addUser = () => {
     window.location = "./employeeForm.html";
-}
-
-const dummyJson = {
-    "employeeData": [
-        {
-            "_name": "David B Alapat",
-            "_gender": "M",
-            "_department": [
-              "Admin",
-              "HR"
-            ],
-            "_salary": 120000,
-            "_startDate": "03-01-2022",
-            "_profilePic": "Ellipse-1",
-            "id": 1
-          },
-          {
-            "_name": "John Doe",
-            "_gender": "M",
-            "_department": [
-              "IT",
-              "HR"
-            ],
-            "_salary": 100000,
-            "_startDate": "02-01-2022",
-            "_profilePic": "Ellipse-2",
-            "id": 2
-          },
-    ]
 }
