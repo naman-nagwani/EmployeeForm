@@ -25,6 +25,9 @@ window.addEventListener("load", () => {
 
 // Called when the submit button is clicked
 function saveForm() {
+
+    // Set a unique value for id
+    employee.id = new Date().getTime();   
     
     // Set the profile picture value
     let profile = document.querySelector('input[name="profile-choice"]:checked');

@@ -25,6 +25,7 @@ const createHomeHtml = () => {
 
     if (localStorage.getItem("empData") == null) {
         console.log(" its empty");
+        document.querySelector("#employee-table").innerHTML = innerHtml;
         return;
     }
     else {
@@ -32,8 +33,9 @@ const createHomeHtml = () => {
         empData = localStorage.getItem("empData")
     }
 
-    console.log(JSON.parse(empData) );
-    for (const emp of JSON.parse(empData).employees) {
+    let empList = JSON.parse(empData).employees;
+    console.log(empList);
+    for (const emp of empList) {
         console.log("emp: " + emp);
 
         console.log(emp._name);
@@ -43,6 +45,8 @@ const createHomeHtml = () => {
         if (emp._profilePic) {
             image = "../assets/profile-images/" + emp._profilePic + ".png";
         }
+
+        let deleteFunction = "deleteEmployee(" + emp._id + ", " + JSON.stringify(empList) + ", " + empData + ")";
 
         innerHtml +=  `
         <tr>
@@ -56,7 +60,7 @@ const createHomeHtml = () => {
             <td>${emp._salary}</td>
             <td>${emp._startDate}</td>
             <td>
-                <i class="material-icons">delete</i>
+                <i class="material-icons" onclick='${deleteFunction}'>delete</i>
                 <i class="material-icons">edit</i>
             </td>
         </tr>`;
@@ -68,4 +72,25 @@ const createHomeHtml = () => {
 
 const addUser = () => {
     window.location = "./employeeForm.html";
+}
+
+const deleteEmployee = (id, array, empData) => {    
+    console.log("trying to delete something");
+    console.log(" trying to delete employee " + id);
+
+    let deleteIndex = array.findIndex((element) => element._id == id)
+    console.log(" The object to delete: " + deleteIndex);
+
+    array.splice(deleteIndex, 1);
+    console.log(array);
+
+    empData.employees = array;
+
+    console.log("new emp");
+    console.log(empData);
+
+    localStorage.setItem("empData", JSON.stringify(empData) );
+
+    createHomeHtml();
+
 }
