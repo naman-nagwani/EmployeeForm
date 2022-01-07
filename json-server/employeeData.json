@@ -1,19 +1,18 @@
 {
   "employees": [
     {
-      "_name": "David",
-      "_id": 1641539197192,
-      "_profilePic": "Ellipse-1",
-      "_gender": "male",
-      "_salary": "697146",
+      "_name": "Harry Potter",
+      "_id": 1641542710630,
+      "_profilePic": "Ellipse-2",
+      "_gender": "female",
+      "_salary": "843695",
       "_notes": "",
       "_department": [
-        "HR",
-        "Sales",
-        "Finance"
+        "Finance",
+        "Engineer"
       ],
-      "_startDate": "24-12-2021",
-      "id": 3
+      "_startDate": "29-12-2021",
+      "id": 1
     }
   ]
 }

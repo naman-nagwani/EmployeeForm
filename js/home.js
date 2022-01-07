@@ -1,8 +1,10 @@
 
 const getURL = "http://localhost:3000/employees";
-const updateURL = "http://localhost:3000/employees/";
+
 
 window.addEventListener("load", () => {
+
+    setLocalEmployeeData("update", {"update": [false] } );
 
     makeAjaxCall("GET", getURL)
         .then( (response) => {
@@ -66,7 +68,7 @@ const createHomeHtml = (empData) => {
 
         //This delete function uses ajax calls
         let deleteFunction = "deleteEmployeeAjax(" + emp.id + " )";
-        let editFunction = "editEmployee(" + JSON.stringify(emp) + ", " + empData + ")";
+        let editFunction = "editEmployee(" + JSON.stringify(emp) + ")";
 
         // console.log("edit function: " + editFunction);
         innerHtml +=  `
@@ -98,9 +100,8 @@ const addUser = () => {
     window.location = "./employeeForm.html";
 }
 
-const editEmployee = (element, empData) => {
+const editEmployee = (element) => {
 
-    //setLocalEmployeeData("update", {"update": [true, element._id]})
-    // window.localStorage.setItem("update", JSON.stringify({"update": [true, element._id]}));
+    setLocalEmployeeData("update", {"update": [true, element.id]})
     window.location = "./employeeForm.html";
 }
