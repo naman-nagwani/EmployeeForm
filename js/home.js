@@ -1,6 +1,5 @@
 
 const getURL = "http://localhost:3000/employees";
-const postURL = "http://localhost:3000/employees";
 const deleteURL = "http://localhost:3000/employees/";
 const updateURL = "http://localhost:3000/employees/";
 
@@ -46,7 +45,6 @@ const createHomeHtml = (empData) => {
 
     let empList = JSON.parse(empData);
     for (const emp of empList) {
-        // emp = JSON.parse(emp)
         console.log("emp: " + JSON.stringify(emp));
 
         // console.log(emp._name);
@@ -55,6 +53,13 @@ const createHomeHtml = (empData) => {
         let image = ``;
         if (emp._profilePic) {
             image = "../assets/profile-images/" + emp._profilePic + ".png";
+        }
+
+        let department = ``;
+        for (const dept of emp._department) {
+            department += `
+            <span class="department-chip">${dept}</span>
+            `
         }
 
         let deleteFunction = "deleteEmployee(" + emp._id + ", " + JSON.stringify(empList) + ", " + empData + "); createHomeHtml();";
@@ -67,8 +72,7 @@ const createHomeHtml = (empData) => {
             <td>${emp._name}</td>
             <td>${emp._gender}</td>
             <td>
-                <span class="department-chip">${emp._department[0]}</span>
-                <span class="department-chip">${emp._department[1]}</span>
+                ${department}
             </td>
             <td>${emp._salary}</td>
             <td>${emp._startDate}</td>
