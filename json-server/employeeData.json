@@ -1,29 +1,6 @@
 {
   "employees": [
     {
-      "id": 1,
-      "_name": "John",
-      "_salary": 4567,
-      "_gender": "male",
-      "_department": [
-        "IT",
-        "HR"
-      ],
-      "_startDate": "21-12-2021"
-    },
-    {
-      "_name": "Harry Potter",
-      "id": 2,
-      "_salary": 4789,
-      "_gender": "male",
-      "_department": [
-        "IT",
-        "Admin",
-        "HR"
-      ],
-      "_startDate": "23-12-2021"
-    },
-    {
       "_name": "David",
       "_id": 1641539197192,
       "_profilePic": "Ellipse-1",
@@ -37,20 +14,6 @@
       ],
       "_startDate": "24-12-2021",
       "id": 3
-    },
-    {
-      "_name": "Dav",
-      "_id": 1641539330879,
-      "_profilePic": "Ellipse-2",
-      "_gender": "male",
-      "_salary": "690774",
-      "_notes": "",
-      "_department": [
-        "HR",
-        "Sales"
-      ],
-      "_startDate": "21-12-2021",
-      "id": 4
     }
   ]
 }

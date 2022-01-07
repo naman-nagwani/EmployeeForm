@@ -1,6 +1,5 @@
 
 const getURL = "http://localhost:3000/employees";
-const deleteURL = "http://localhost:3000/employees/";
 const updateURL = "http://localhost:3000/employees/";
 
 window.addEventListener("load", () => {
@@ -62,7 +61,11 @@ const createHomeHtml = (empData) => {
             `
         }
 
-        let deleteFunction = "deleteEmployee(" + emp._id + ", " + JSON.stringify(empList) + ", " + empData + "); createHomeHtml();";
+        // This delete function uses local storage
+        //let deleteFunction = "deleteEmployee(" + emp._id + ", " + JSON.stringify(empList) + ", " + empData + "); createHomeHtml();";
+
+        //This delete function uses ajax calls
+        let deleteFunction = "deleteEmployeeAjax(" + emp.id + " )";
         let editFunction = "editEmployee(" + JSON.stringify(emp) + ", " + empData + ")";
 
         // console.log("edit function: " + editFunction);
