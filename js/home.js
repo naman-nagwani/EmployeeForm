@@ -1,6 +1,6 @@
 window.addEventListener("load", () => {
 
-    createHomeHtml();
+    //createHomeHtml();
 })
 
 const createHomeHtml = () => {
@@ -74,7 +74,7 @@ const createHomeHtml = () => {
 
 const addUser = () => {
     // Reset the update flag in the local storage
-    setLocalEmployeeData("update", {"update": [false]})
+    //setLocalEmployeeData("update", {"update": [false]})
     // window.localStorage.setItem("update", JSON.stringify({"update": [false]}));
 
     window.location = "./employeeForm.html";
@@ -82,7 +82,7 @@ const addUser = () => {
 
 const editEmployee = (element, empData) => {
 
-    setLocalEmployeeData("update", {"update": [true, element._id]})
+    //setLocalEmployeeData("update", {"update": [true, element._id]})
     // window.localStorage.setItem("update", JSON.stringify({"update": [true, element._id]}));
     window.location = "./employeeForm.html";
 }
