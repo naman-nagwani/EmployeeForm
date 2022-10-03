@@ -1,13 +1,16 @@
 const postURL = "http://localhost:3000/employees";
+const getURL = "http://localhost:3000/employees";
+const updateURL = "http://localhost:3000/employees/";
 let employee = new Employee();
 
+
 window.addEventListener("load", () => {
-
+    
     // console.log("raw data: " + getLocalEmployeeData(false, "empData"));
-
     let salary = document.querySelector("salary");
     let salaryValue = document.querySelector("#salary");
     let name = document.querySelector("#name");
+
 
     // Display salary value next to slider
     salaryValue.addEventListener("input", () => {
@@ -25,59 +28,27 @@ window.addEventListener("load", () => {
         }
     })
 
-    // let checkUpdate = getLocalEmployeeData(true, "update")
-    // console.log("update: " + checkUpdate.update[0]);
+    let checkUpdate = getLocalEmployeeData(true, "update")
+    console.log("update on load: " + checkUpdate.update[0]);
 
     // Fill up the fields if the update value is true in the local storage
-    // if (checkUpdate.update[0] == true) {
+    if (checkUpdate.update[0] == true) {
 
-    //     console.log(" We are updating");
-    //     let empList = getLocalEmployeeData().employees;
-    //     let updateIndex = empList.findIndex((element) => element._id == checkUpdate.update[1])
-    //     let updateEmployee = empList[updateIndex];
+        makeAjaxCall("GET", getURL)
+        .then( (response) => {
+            updateForm(response, checkUpdate);
+        })
 
-    //     // console.log(" value = " + updateEmployee._startDate );
-
-    //     // Set the original value of the attributes
-    //     name.value = updateEmployee._name;  
-
-    //     let profileChoice = 'input[value="' + updateEmployee._profilePic + '"]';
-    //     document.querySelector(profileChoice).checked = true;
-        
-    //     let genderChoice = 'input[value="' + updateEmployee._gender + '"]';
-    //     document.querySelector(genderChoice).checked = true;
-
-    //     for (const dept of updateEmployee._department) {
-    //         let departmentChoice = 'input[value="' + dept + '"]';
-    //         document.querySelector(departmentChoice).checked = true;
-    //     }
-
-    //     salaryValue.value = updateEmployee._salary;
-    //     salary.textContent = updateEmployee._salary;
-
-    //     let date = updateEmployee._startDate.split("-");
-    //     document.querySelector('select[name=Day]').value = date[0];
-    //     document.querySelector('select[name=Month]').value = date[1];
-    //     document.querySelector('select[name=Year]').value = date[2];
-
-    //     document.querySelector('#notes').value = updateEmployee._notes;
-
-    // }
+    }
     
     // console.log("raw data: " + getLocalEmployeeData(false));
 })
 
 // Called when the submit button is clicked
 function saveForm() {
-    
-    // if (getLocalEmployeeData(true, "update").update[1] == true) {
-    //     // delete this record so we can enter the replacement record
-    //     deleteEmployee(getLocalEmployeeData(true, "update").update[1], empList, getLocalEmployeeData());
-        
-    //     // Reset the update flag in the local storage
-    //     setLocalEmployeeData("update", {"update": [false] } );
-    // }
 
+    console.log(" update: " + getLocalEmployeeData(true, "update").update[0]);
+    
     // Set a unique value for id
     employee.id = new Date().getTime();
     
@@ -127,8 +98,25 @@ function saveForm() {
             return;
         }
 
-        makeAjaxCall("POST", postURL, employee);
-        window.location = "/html/home.html";
+        if (getLocalEmployeeData(true, "update").update[0] == true) {
+            // delete this record so we can enter the replacement record
+            //deleteEmployee(getLocalEmployeeData(true, "update").update[1], empList, getLocalEmployeeData());
+            let updateIndex = getLocalEmployeeData(true, "update").update[1]
+            console.log(" WE are saving the updated form");
+            makeAjaxCall("PUT", updateURL + updateIndex, employee)
+                .then( () => {
+                    window.location = "/html/home.html";
+                });
+    
+            // Reset the update flag in the local storage
+            setLocalEmployeeData("update", {"update": [false] } );
+            return;
+        }
+
+        makeAjaxCall("POST", postURL, employee)
+            .then( () => {
+                window.location = "/html/home.html";
+            });
         // This function is for saving on local storage
         //submitForm(employee);
     } catch (invalidDate) {
@@ -138,30 +126,6 @@ function saveForm() {
     
 }
 
-// This function is called by the saveForm() function if the attributes are valid.
-// We add the employee object to the local storage
-function submitForm(employee) {
-    
-    // let localStorage = window.localStorage;
-    
-    let empDataTemp = getLocalEmployeeData(false) == null ? {"employees": []} : getLocalEmployeeData();
-
-    console.log("emp");
-    console.log("data: " + JSON.stringify(empDataTemp));
-
-    empDataTemp.employees.push(employee );
-
-    console.log("new emp");
-    console.log(empDataTemp);
-
-    setLocalEmployeeData("empData", empDataTemp)
-    // localStorage.setItem("empData", JSON.stringify(empDataTemp) );
-    console.log(" saved " + getLocalEmployeeData());
-
-    // Redirect back to the home page once we're done saving into local storage
-    window.location = "/html/home.html";
-}
-
 // This function is called when the cancel button is clicked. We redirect back to the home page.
 function clearForm() {
 
@@ -169,4 +133,42 @@ function clearForm() {
     setLocalEmployeeData("update", {"update": [false] } );
     
     window.location = "/html/home.html";
+}
+
+function updateForm(empData, checkUpdate) {
+    console.log(" We are updating");
+
+    let salary = document.querySelector("salary");
+    let salaryValue = document.querySelector("#salary");
+    let name = document.querySelector("#name");
+
+    let empList = JSON.parse(empData);
+    let updateIndex = empList.findIndex((element) => element.id == checkUpdate.update[1])
+    let updateEmployee = empList[updateIndex];
+
+    // console.log(" value = " + updateEmployee._startDate );
+
+    // Set the original value of the attributes
+    name.value = updateEmployee._name;  
+
+    let profileChoice = 'input[value="' + updateEmployee._profilePic + '"]';
+    document.querySelector(profileChoice).checked = true;
+    
+    let genderChoice = 'input[value="' + updateEmployee._gender + '"]';
+    document.querySelector(genderChoice).checked = true;
+
+    for (const dept of updateEmployee._department) {
+        let departmentChoice = 'input[value="' + dept + '"]';
+        document.querySelector(departmentChoice).checked = true;
+    }
+
+    salaryValue.value = updateEmployee._salary;
+    salary.textContent = updateEmployee._salary;
+
+    let date = updateEmployee._startDate.split("-");
+    document.querySelector('select[name=Day]').value = date[0];
+    document.querySelector('select[name=Month]').value = date[1];
+    document.querySelector('select[name=Year]').value = date[2];
+
+    document.querySelector('#notes').value = updateEmployee._notes;
 }
