@@ -17,6 +17,7 @@ body {
 }
 
 .content-container {
+    max-height: 80vh;
     padding: 5vh 10vw;
 }
 
@@ -88,8 +89,11 @@ error-label {
 }
 
 .notes {
+    resize: none;
     width: 30vw;
     height: 9vh;
+    border-radius: 3px;
+    border: 1px solid rgb(163, 163, 163);
 }
 
 .button-container {

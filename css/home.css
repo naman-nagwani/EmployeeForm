@@ -1,0 +1,86 @@
+body {
+    margin: 0%;
+    font-family: sans-serif;
+    background-color: rgb(197, 219, 233);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5vw;
+    height: 10vh;
+}
+
+header span {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+header button {
+    border: none;
+    height: 5vh;
+    background-color: greenyellow;
+    padding: 0 2vw;
+}
+
+main {
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table {
+    width: 90vw;
+    height: auto;
+    border-collapse: collapse;
+    border: 1px solid rgb(168, 168, 168);
+}
+
+table img {
+    width: 2.5vw;
+    height: auto;
+}
+
+th {
+    background-color: rgb(12, 71, 99);
+    color: white;
+    text-align: left;
+}
+
+td:nth-child(1) {
+    display: flex;
+    width: 4vw;
+    height: 5vh;
+    justify-content: center;
+    align-items: center;
+}
+
+td:nth-child(2) {
+    width: 20vw;
+}
+
+th:nth-child(7), td:nth-child(7) {
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+tr {
+    background-color: white;
+    height: 5vh;
+    border-bottom: 1px solid rgb(168, 168, 168);
+}
+
+.department-chip {
+    padding: 0.5vh 1vw;
+    background-color: rgb(148, 213, 233);
+    border-radius: 15px;
+}
+
+i {
+    cursor: pointer;
+}
