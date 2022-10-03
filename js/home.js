@@ -20,17 +20,17 @@ const createHomeHtml = () => {
     let innerHtml = `${headerInnerHtml}`;
 
     // Initialize local storage if it doesn't exist already
-    let localStorage = window.localStorage;
+    // let localStorage = window.localStorage;
     let empData;
 
-    if (localStorage.getItem("empData") == null) {
+    if (getLocalEmployeeData(false) == null) {
         console.log(" its empty");
         document.querySelector("#employee-table").innerHTML = innerHtml;
         return;
     }
     else {
         console.log(" its not empty ");
-        empData = localStorage.getItem("empData")
+        empData = getLocalEmployeeData(false)
     }
 
     let empList = JSON.parse(empData).employees;
@@ -46,8 +46,10 @@ const createHomeHtml = () => {
             image = "../assets/profile-images/" + emp._profilePic + ".png";
         }
 
-        let deleteFunction = "deleteEmployee(" + emp._id + ", " + JSON.stringify(empList) + ", " + empData + ")";
+        let deleteFunction = "deleteEmployee(" + emp._id + ", " + JSON.stringify(empList) + ", " + empData + "); createHomeHtml();";
+        let editFunction = "editEmployee(" + JSON.stringify(emp) + ", " + empData + ")";
 
+        // console.log("edit function: " + editFunction);
         innerHtml +=  `
         <tr>
             <td><img src=${image}></td>
@@ -61,7 +63,7 @@ const createHomeHtml = () => {
             <td>${emp._startDate}</td>
             <td>
                 <i class="material-icons" onclick='${deleteFunction}'>delete</i>
-                <i class="material-icons">edit</i>
+                <i class="material-icons" onclick='${editFunction}'>edit</i>
             </td>
         </tr>`;
         
@@ -71,26 +73,16 @@ const createHomeHtml = () => {
 }
 
 const addUser = () => {
+    // Reset the update flag in the local storage
+    setLocalEmployeeData("update", {"update": [false]})
+    // window.localStorage.setItem("update", JSON.stringify({"update": [false]}));
+
     window.location = "./employeeForm.html";
 }
 
-const deleteEmployee = (id, array, empData) => {    
-    console.log("trying to delete something");
-    console.log(" trying to delete employee " + id);
+const editEmployee = (element, empData) => {
 
-    let deleteIndex = array.findIndex((element) => element._id == id)
-    console.log(" The object to delete: " + deleteIndex);
-
-    array.splice(deleteIndex, 1);
-    console.log(array);
-
-    empData.employees = array;
-
-    console.log("new emp");
-    console.log(empData);
-
-    localStorage.setItem("empData", JSON.stringify(empData) );
-
-    createHomeHtml();
-
+    setLocalEmployeeData("update", {"update": [true, element._id]})
+    // window.localStorage.setItem("update", JSON.stringify({"update": [true, element._id]}));
+    window.location = "./employeeForm.html";
 }
