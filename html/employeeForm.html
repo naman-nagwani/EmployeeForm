@@ -22,6 +22,7 @@
                             Name
                         </div>
                         <input class="input-name" type="text" id="name"/>
+                        <error-label id="error-name"></error-label>
                     </div>
 
                     <div class="form-item" id="profile-image-selector">
@@ -139,18 +140,18 @@
 
                             <select name="Month">
                                 <option selected disabled hidden>Month</option>
-                                <option>January</option>
-                                <option>Febuary</option>
-                                <option>March</option>
-                                <option>April</option>
-                                <option>May</option>
-                                <option>June</option>
-                                <option>July</option>
-                                <option>Auguest</option>
-                                <option>September</option>
-                                <option>October</option>
-                                <option>November</option>
-                                <option>December</option>
+                                <option value="1">January</option>
+                                <option value="2">Febuary</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">Auguest</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
                             </select>
 
                             <select name="Year">
@@ -161,6 +162,7 @@
                                 <option>2019</option>
                             </select>
 
+                            <error-label id="error-date"></error-label>
                         </div>
                     </div>
 

@@ -26,6 +26,12 @@ body {
     color: rgb(59, 59, 59);
 }
 
+error-label {
+    color: red;
+    font-style: italic;
+    max-width: 17vw;
+}
+
 .form {
     margin-top: 5vh;
 }
