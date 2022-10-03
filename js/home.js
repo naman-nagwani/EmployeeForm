@@ -1,9 +1,23 @@
+
+const getURL = "http://localhost:3000/employees";
+const postURL = "http://localhost:3000/employees";
+const deleteURL = "http://localhost:3000/employees/";
+const updateURL = "http://localhost:3000/employees/";
+
 window.addEventListener("load", () => {
 
-    createHomeHtml();
+    makeAjaxCall("GET", getURL)
+        .then( (response) => {
+            createHomeHtml(response);
+        })
+        // .catch( (rejected) => {
+        //     console.log(" ERROR: " + rejected);
+        //     console.log(" ERROR: " + rejected.status + ": " + rejected.statusText);
+        //     return;
+        // });
 })
 
-const createHomeHtml = () => {
+const createHomeHtml = (empData) => {
 
     const headerInnerHtml = `
     <tr>
@@ -19,27 +33,24 @@ const createHomeHtml = () => {
     
     let innerHtml = `${headerInnerHtml}`;
 
-    // Initialize local storage if it doesn't exist already
-    // let localStorage = window.localStorage;
-    let empData;
-
-    if (getLocalEmployeeData(false) == null) {
+    if (empData == null) {
         console.log(" its empty");
+        console.log(empData);
         document.querySelector("#employee-table").innerHTML = innerHtml;
         return;
     }
     else {
         console.log(" its not empty ");
-        empData = getLocalEmployeeData(false)
+        console.log(JSON.parse(empData));
     }
 
-    let empList = JSON.parse(empData).employees;
-    console.log(empList);
+    let empList = JSON.parse(empData);
     for (const emp of empList) {
-        console.log("emp: " + emp);
+        // emp = JSON.parse(emp)
+        console.log("emp: " + JSON.stringify(emp));
 
-        console.log(emp._name);
-        console.log(emp._department);
+        // console.log(emp._name);
+        // console.log(emp._department);
 
         let image = ``;
         if (emp._profilePic) {
@@ -74,7 +85,7 @@ const createHomeHtml = () => {
 
 const addUser = () => {
     // Reset the update flag in the local storage
-    setLocalEmployeeData("update", {"update": [false]})
+    //setLocalEmployeeData("update", {"update": [false]})
     // window.localStorage.setItem("update", JSON.stringify({"update": [false]}));
 
     window.location = "./employeeForm.html";
@@ -82,7 +93,7 @@ const addUser = () => {
 
 const editEmployee = (element, empData) => {
 
-    setLocalEmployeeData("update", {"update": [true, element._id]})
+    //setLocalEmployeeData("update", {"update": [true, element._id]})
     // window.localStorage.setItem("update", JSON.stringify({"update": [true, element._id]}));
     window.location = "./employeeForm.html";
 }

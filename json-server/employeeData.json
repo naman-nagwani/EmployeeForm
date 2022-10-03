@@ -1,14 +1,20 @@
 {
   "employees": [
     {
-      "id": 2,
-      "Name": "John",
-      "Salary": 4567
+      "_id": 2,
+      "_name": "John",
+      "_salary": 4567,
+      "_gender": "male",
+      "_department": ["IT", "HR"],
+      "_startDate": "21-12-2021"
     },
     {
-      "Name": "Harry James Potter",
-      "id": 3,
-      "Salary": 4789
+      "_name": "Harry Potter",
+      "_id": 3,
+      "_salary": 4789,
+      "_gender": "male",
+      "_department": ["IT", "Admin"],
+      "_startDate": "23-12-2021"
     }
   ]
 }
