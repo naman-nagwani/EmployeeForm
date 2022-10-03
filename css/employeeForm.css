@@ -32,17 +32,68 @@ body {
 
 .form-item {
     display: flex;
+    margin-bottom: 4vh;
+}
+
+.form-item select {
+    width: 7vw;
+    height: 4vh;
+    border-radius: 3px;
+    border: 1px solid rgb(163, 163, 163);
 }
 
 .form-label {
-    width: 10vw;
+    min-width: 10vw;
     display: flex;
     align-items: center;
 }
 
-.input-item {
+.input-name {
     width: 30vw;
     height: 1.7em;
     border: 1px solid rgb(163, 163, 163);
     border-radius: 3px;
+}
+
+.multiple-choices {
+    width: 30vw;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+.profile-choices img {
+    height: 30px;
+    width: 30px;
+}
+
+.profile-choice-item {
+    display: flex;
+    align-items: center;
+}
+
+.gender-choices label {
+    margin-right: 3vw;
+}
+
+.label-notes {
+    display: flex;
+    align-items: flex-start;
+}
+
+.notes {
+    width: 30vw;
+    height: 9vh;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-container button {
+    border: 1px solid rgb(163, 163, 163);
+    border-radius: 3px;
+    height: 2em;
+    width: 10vw;
 }

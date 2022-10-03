@@ -6,7 +6,8 @@
     <title>Employee Form</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../css/employeeForm.css'>
-    <script src='main.js'></script>
+    <script src="../js/Employee.js"></script>
+    <script src='../js/employeeForm.js'></script>
 </head>
 <body>
     <div class="parent-container">
@@ -15,14 +16,170 @@
                 <div class="header">
                     Employee Payroll Form
                 </div>
-                <form class="form">
+                <form class="form" target="_blank" id="form" onsubmit="saveForm(); return false;">
                     <div class="form-item">
                         <div class="form-label">
                             Name
                         </div>
-                        <input class="input-item" type="text"/>
+                        <input class="input-name" type="text" id="name"/>
                     </div>
+
+                    <div class="form-item" id="profile-image-selector">
+                        <div class="form-label">
+                            Profile image
+                        </div>
+                        <div class="multiple-choices">
+                            <div class="profile-choice-item">
+                                <input type="radio" name="profile-choice" value="person1"/>
+                                <img src="../assets/profile-images/Ellipse -1.png">
+                            </div>
+                            <div class="profile-choice-item">
+                                <input type="radio" name="profile-choice" value="person2"/>
+                                <img src="../assets/profile-images/Ellipse -2.png">
+                            </div>
+                            <div class="profile-choice-item">
+                                <input type="radio" name="profile-choice" value="person3"/>
+                                <img src="../assets/profile-images/Ellipse -3.png">
+                            </div>
+                            <div class="profile-choice-item">
+                                <input type="radio" name="profile-choice" value="person4"/>
+                                <img src="../assets/profile-images/Ellipse -4.png">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-item" id="gender-selector">
+                        <div class="form-label">
+                            Gender
+                        </div>
+                        <div class="gender-choices">
+                            <input type="radio" name="gender" value="male">
+                            <label>Male</label>
+                            <input type="radio" name="gender" value="female">
+                            <label>Female</label>
+                        </div>
+                    </div>
+
+                    <div class="form-item" id="department-selector">
+                        <div class="form-label">
+                            Department
+                        </div>
+                        <div class="multiple-choices">
+                            <div>
+                                <input type="checkbox" name="department" value="HR">
+                                <label>HR</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="department" value="Sales">
+                                <label>Sales</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="department" value="Finance">
+                                <label>Finance</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="department" value="Engineer">
+                                <label>Engineer</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="department" value="Other">
+                                <label>Other</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-item">
+                        <div class="form-label">
+                            Salary
+                        </div>
+                        <input type="range" min="100000" max="1000000" id="salary">
+                        <salary>500000</salary>
+                    </div>
+
+                    <div class="form-item" id="date-selector">
+                        <div class="form-label">
+                            Start Date
+                        </div>
+                        <div class="multiple-choices">
+                            <select name="Day">
+                                <option selected hidden disabled>Day</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>15</option>
+                                <option>16</option>
+                                <option>17</option>
+                                <option>18</option>
+                                <option>19</option>
+                                <option>20</option>
+                                <option>21</option>
+                                <option>22</option>
+                                <option>23</option>
+                                <option>24</option>
+                                <option>25</option>
+                                <option>26</option>
+                                <option>27</option>
+                                <option>28</option>
+                                <option>29</option>
+                                <option>30</option>
+                                <option>31</option>
+                            </select>
+
+                            <select name="Month">
+                                <option selected disabled hidden>Month</option>
+                                <option>January</option>
+                                <option>Febuary</option>
+                                <option>March</option>
+                                <option>April</option>
+                                <option>May</option>
+                                <option>June</option>
+                                <option>July</option>
+                                <option>Auguest</option>
+                                <option>September</option>
+                                <option>October</option>
+                                <option>November</option>
+                                <option>December</option>
+                            </select>
+
+                            <select name="Year">
+                                <option selected hidden disabled>Year</option>
+                                <option>2022</option>
+                                <option>2021</option>
+                                <option>2020</option>
+                                <option>2019</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="form-item">
+                        <div class="form-label label-notes">
+                            Notes
+                        </div>
+                        <input class="notes" type="text" id="notes">
+                    </div>
+
                 </form>
+
+                <div class="button-container">
+                    <button>Cancel</button>
+                    <div class="form-button-right">
+                        <button type="submit" form="form">Submit</button>
+                        <button>Reset</button> 
+                    </div>
+                </div>
             </div>
         </div>
     </div>
