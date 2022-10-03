@@ -1,4 +1,4 @@
-
+const postURL = "http://localhost:3000/employees";
 let employee = new Employee();
 
 window.addEventListener("load", () => {
@@ -25,44 +25,44 @@ window.addEventListener("load", () => {
         }
     })
 
-    let checkUpdate = getLocalEmployeeData(true, "update")
-    console.log("update: " + checkUpdate.update[0]);
+    // let checkUpdate = getLocalEmployeeData(true, "update")
+    // console.log("update: " + checkUpdate.update[0]);
 
     // Fill up the fields if the update value is true in the local storage
-    if (checkUpdate.update[0] == true) {
+    // if (checkUpdate.update[0] == true) {
 
-        console.log(" We are updating");
-        let empList = getLocalEmployeeData().employees;
-        let updateIndex = empList.findIndex((element) => element._id == checkUpdate.update[1])
-        let updateEmployee = empList[updateIndex];
+    //     console.log(" We are updating");
+    //     let empList = getLocalEmployeeData().employees;
+    //     let updateIndex = empList.findIndex((element) => element._id == checkUpdate.update[1])
+    //     let updateEmployee = empList[updateIndex];
 
-        // console.log(" value = " + updateEmployee._startDate );
+    //     // console.log(" value = " + updateEmployee._startDate );
 
-        // Set the original value of the attributes
-        name.value = updateEmployee._name;  
+    //     // Set the original value of the attributes
+    //     name.value = updateEmployee._name;  
 
-        let profileChoice = 'input[value="' + updateEmployee._profilePic + '"]';
-        document.querySelector(profileChoice).checked = true;
+    //     let profileChoice = 'input[value="' + updateEmployee._profilePic + '"]';
+    //     document.querySelector(profileChoice).checked = true;
         
-        let genderChoice = 'input[value="' + updateEmployee._gender + '"]';
-        document.querySelector(genderChoice).checked = true;
+    //     let genderChoice = 'input[value="' + updateEmployee._gender + '"]';
+    //     document.querySelector(genderChoice).checked = true;
 
-        for (const dept of updateEmployee._department) {
-            let departmentChoice = 'input[value="' + dept + '"]';
-            document.querySelector(departmentChoice).checked = true;
-        }
+    //     for (const dept of updateEmployee._department) {
+    //         let departmentChoice = 'input[value="' + dept + '"]';
+    //         document.querySelector(departmentChoice).checked = true;
+    //     }
 
-        salaryValue.value = updateEmployee._salary;
-        salary.textContent = updateEmployee._salary;
+    //     salaryValue.value = updateEmployee._salary;
+    //     salary.textContent = updateEmployee._salary;
 
-        let date = updateEmployee._startDate.split("-");
-        document.querySelector('select[name=Day]').value = date[0];
-        document.querySelector('select[name=Month]').value = date[1];
-        document.querySelector('select[name=Year]').value = date[2];
+    //     let date = updateEmployee._startDate.split("-");
+    //     document.querySelector('select[name=Day]').value = date[0];
+    //     document.querySelector('select[name=Month]').value = date[1];
+    //     document.querySelector('select[name=Year]').value = date[2];
 
-        document.querySelector('#notes').value = updateEmployee._notes;
+    //     document.querySelector('#notes').value = updateEmployee._notes;
 
-    }
+    // }
     
     // console.log("raw data: " + getLocalEmployeeData(false));
 })
@@ -70,15 +70,15 @@ window.addEventListener("load", () => {
 // Called when the submit button is clicked
 function saveForm() {
     
-    if (getLocalEmployeeData(true, "update").update[1] == true) {
-        // delete this record so we can enter the replacement record
-        deleteEmployee(getLocalEmployeeData(true, "update").update[1], empList, getLocalEmployeeData());
+    // if (getLocalEmployeeData(true, "update").update[1] == true) {
+    //     // delete this record so we can enter the replacement record
+    //     deleteEmployee(getLocalEmployeeData(true, "update").update[1], empList, getLocalEmployeeData());
         
-        // Reset the update flag in the local storage
-        setLocalEmployeeData("update", {"update": [false] } );
-    }
-    // Set a unique value for id
+    //     // Reset the update flag in the local storage
+    //     setLocalEmployeeData("update", {"update": [false] } );
+    // }
 
+    // Set a unique value for id
     employee.id = new Date().getTime();
     
     // Set the profile picture value
@@ -126,7 +126,9 @@ function saveForm() {
         if (errorName.textContent != "") {
             return;
         }
-        
+
+        makeAjaxCall("POST", postURL, employee);
+        window.location = "/html/home.html";
         // This function is for saving on local storage
         //submitForm(employee);
     } catch (invalidDate) {
